@@ -125,10 +125,73 @@ module Base
             rotate = 0.0000 0.0000 0.0000,
         }
     }
+    model MAK90FGS
+    {
+        mesh = Weapons/firearm/MAK90NoMag,
+        texture = Weapons/firearm/ak47_solid_fiberglass_texture,
+        
+        attachment world
+        {
+            offset = 0.0000 0.0000 0.0000,
+            rotate = 0.0000 180.0000 0.0000,
+        }
+        attachment muzzle
+        {
+            offset = 0.0000 0.4100 0.0092,
+            rotate = -90.0000 0.0000 0.0000,
+        }
+        attachment scope
+        {
+            offset = 0.0000 0.0316 0.0500,
+            rotate = 0.0000 0.0000 0.0000,
+        }
+    }
     model SKS
     {
         mesh = Weapons/firearm/sks_model,
         texture = Weapons/firearm/sks_texture,
+        
+        attachment world
+        {
+            offset = 0.0000 0.0000 0.0000,
+            rotate = 0.0000 180.0000 0.0000,
+        }
+        
+        attachment muzzle
+        {
+            offset = 0.0000 0.5000 0.0150,
+            rotate = -90.0000 0.0000 0.0000,
+        }
+        
+        attachment scope
+        {
+            offset = 0.0000 0.0597 0.0456,
+            rotate = 0.0000 0.0000 0.0000,
+        }
+        
+        attachment recoilpad
+        {
+            offset = 0.0000 -0.1770 -0.0360,
+            rotate = 0.0000 0.0000 0.0000,
+        }
+        
+        attachment bulletloops
+        {
+            offset = 0.0082 -0.0313 -0.0145,
+            rotate = 0.0000 0.0000 0.0000,
+        }
+        
+        attachment bipod
+        {
+            offset = 0.0000 0.2850 -0.0030,
+            rotate = -90.0000 180.0000 -180.0000,
+        }
+    }
+    model SKSFGS
+    {
+        mesh = Weapons/firearm/sks_model,
+        texture = Weapons/firearm/sks_fiberglass_texture,
+        
         
         attachment world
         {
@@ -370,6 +433,37 @@ module Base
             rotate = 0.0000 0.0000 0.0000,
         }
     }
+    model Mini14SolidFGS
+    {
+        mesh = Weapons/firearm/Mini14SolidNoMag,
+        texture = Weapons/firearm/mini14_solid_fiberglass_texture,
+        
+        attachment world
+        {
+            offset = 0.0000 0.0000 0.0000,
+            rotate = 0.0000 180.0000 0.0000,
+        }
+        attachment muzzle
+        {
+            offset = 0.0000 0.4351 0.0306,
+            rotate = -90.0000 0.0000 0.0000,
+        }
+        attachment scope
+        {
+            offset = 0.0000 0.0617 0.0597,
+            rotate = 0.0000 0.0000 0.0000,
+        }
+        attachment laser
+        {
+            offset = 0.0247 0.2357 0.0200,
+            rotate = 0.0000 90.0000 0.0000,
+        }
+        attachment magazine
+        {
+            offset = 0.0000 0.0000 0.0000,
+            rotate = 0.0000 0.0000 0.0000,
+        }
+    }
     model FAL
     {
         mesh = Weapons/firearm/FALNoMag,
@@ -563,6 +657,42 @@ module Base
     {
         mesh = Weapons/Firearm/M14NoMag,
         texture = weapons/firearm/AssaultRifle02,
+        
+        attachment muzzle
+        {
+            offset = 0.0000 0.5200 0.0130,
+            rotate = -90.0000 0.0000 -180.0000,
+        }
+        attachment world
+        {
+            offset = 0.0000 0.1800 0.0000,
+            rotate = 180.0000 0.0000 180.0000,
+        }
+        attachment scope
+        {
+            offset = 0.0000 0.0617 0.0420,
+            rotate = 0.0000 0.0000 0.0000,
+        }
+        attachment laser
+        {
+            offset = 0.0250 0.270 0.0130,
+            rotate = 0.0000 90.0000 0.0000,
+        }
+        attachment recoilpad
+        {
+            offset = 0.0000 -0.1696 -0.0530,
+            rotate = 4.0000 0.0000 0.0000,
+        }
+        attachment bipod
+        {
+            offset = 0.0000 0.2900 -0.0030,
+            rotate = -90.0000 180.0000 -180.0000,
+        }
+    }
+    model M14FGS
+    {
+        mesh = Weapons/Firearm/M14NoMag,
+        texture = weapons/firearm/AssaultRifle02_Fiberglass,
         
         attachment muzzle
         {
