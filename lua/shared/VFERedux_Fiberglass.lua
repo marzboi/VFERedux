@@ -1,25 +1,20 @@
--- local ISUpgradeWeapon_perform_old = ISUpgradeWeapon.perform
--- function ISUpgradeWeapon:perform()
---     ISUpgradeWeapon_perform_old(self)
---     print('UPGRADING')
---     VFESetWeaponModel(self.weapon, false)
--- end
-
--- local ISRemoveWeaponUpgrade_perform_old = ISRemoveWeaponUpgrade.perform
--- function ISRemoveWeaponUpgrade:perform()
---     ISRemoveWeaponUpgrade_perform_old(self)
---     print('DOWNGRADING')
---     VFESetWeaponModel(self.weapon, false)
--- end
-
-function FiberglassStock(wielder, weapon)
-    if not weapon or not weapon:IsWeapon() or not weapon:isRanged() then return end
-    VFESetWeaponModel(weapon, false)
+local function refreshSpriteNextTick(weapon)
+    local w = weapon
+    local function once()
+        Events.OnTick.Remove(once)
+        VFESetWeaponModel(w, false)
+    end
+    Events.OnTick.Add(once)
 end
 
-Events.OnEquipPrimary.Add(FiberglassStock)
+local ISUpgradeWeapon_perform_old = ISUpgradeWeapon.perform
+function ISUpgradeWeapon:perform()
+    ISUpgradeWeapon_perform_old(self)
+    refreshSpriteNextTick(self.weapon)
+end
 
-Events.OnGameStart.Add(function()
-    local player = getPlayer()
-    FiberglassStock(player, player:getPrimaryHandItem())
-end)
+local ISRemoveWeaponUpgrade_perform_old = ISRemoveWeaponUpgrade.perform
+function ISRemoveWeaponUpgrade:perform()
+    ISRemoveWeaponUpgrade_perform_old(self)
+    refreshSpriteNextTick(self.weapon)
+end
