@@ -3,6 +3,7 @@ local function refreshSpriteNextTick(weapon)
     local function once()
         Events.OnTick.Remove(once)
         VFESetWeaponModel(w, false)
+        VFESetWeaponIcon(w)
     end
     Events.OnTick.Add(once)
 end

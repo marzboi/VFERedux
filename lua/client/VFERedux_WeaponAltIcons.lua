@@ -1,19 +1,19 @@
--- local ISInventoryPane_refreshContainer_old = ISInventoryPane.refreshContainer
--- function ISInventoryPane:refreshContainer()
--- 	local itemsVFE = self.inventory:getItems();
--- 	for i = 0, itemsVFE:size() - 1 do
--- 		local item = itemsVFE:get(i);
--- 		if instanceof(item, "HandWeapon") then
--- 			local stock = weapon:getWeaponPart("Stock")
--- 			if stock ~= nil then
--- 				if stock:getType() == "FiberglassStock" then
--- 					VFESetWeaponIcon(item)
--- 				end
--- 			end
--- 		end
--- 	end
--- 	ISInventoryPane_refreshContainer_old(self)
--- end
+local ISInventoryPane_refreshContainer_old = ISInventoryPane.refreshContainer
+function ISInventoryPane:refreshContainer()
+	local itemsVFE = self.inventory:getItems();
+	for i = 0, itemsVFE:size() - 1 do
+		local item = itemsVFE:get(i);
+		if instanceof(item, "HandWeapon") then
+			local stock = item:getWeaponPart("Stock")
+			if stock ~= nil then
+				if stock:getType() == "FiberglassStock" then
+					VFESetWeaponIcon(item)
+				end
+			end
+		end
+	end
+	ISInventoryPane_refreshContainer_old(self)
+end
 
 VFEWeaponIconTable = {}
 

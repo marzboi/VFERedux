@@ -3,7 +3,6 @@ ItemName_EN = {
     ItemName_Base.AK47 = "AK-47 Assault Rifle",
     ItemName_Base.AK47Unfolded = "AK-47 Assault Rifle",
     ItemName_Base.AK47Folded = "AK-47 Assault Rifle",
-    ItemName_Base.AK47_FGS = "AK-47 Assault Rifle (Fiberglass Stock)",
     
     ItemName_Base.MAK90 = "MAK-90 Rifle",
     
