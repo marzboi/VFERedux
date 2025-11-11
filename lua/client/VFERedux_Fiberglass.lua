@@ -8,26 +8,9 @@ local function refreshSpriteNextTick(weapon)
     Events.OnTick.Add(once)
 end
 
--- local ISUpgradeWeapon_perform_old = ISUpgradeWeapon.perform
--- function ISUpgradeWeapon:perform()
---     ISUpgradeWeapon_perform_old(self)
---     refreshSpriteNextTick(self.weapon)
--- end
-
--- local ISRemoveWeaponUpgrade_perform_old = ISRemoveWeaponUpgrade.perform
--- function ISRemoveWeaponUpgrade:perform()
---     ISRemoveWeaponUpgrade_perform_old(self)
---     refreshSpriteNextTick(self.weapon)
--- end
-
 local ISRemoveWeaponUpgrade_performHook = ISRemoveWeaponUpgrade.perform
 function ISRemoveWeaponUpgrade:perform()
-    local clip = self.weapon:getWeaponPart("Clip")
     local scope = self.weapon:getWeaponPart("Scope")
-    local sling = self.weapon:getWeaponPart("Sling")
-    local canon = self.weapon:getWeaponPart("Canon")
-    local stock = self.weapon:getWeaponPart("Stock")
-    local pad = self.weapon:getWeaponPart("RecoilPad")
 
     if scope then
         if scope:getFullType() == "Base.x2Scope_Fake" then
@@ -45,18 +28,13 @@ function ISRemoveWeaponUpgrade:perform()
         end
     end
 
-    ISRemoveWeaponUpgrade_performHook(self)
     refreshSpriteNextTick(self.weapon)
+    ISRemoveWeaponUpgrade_performHook(self)
 end
 
 local ISUpgradeWeapon_performHook = ISUpgradeWeapon.perform
 function ISUpgradeWeapon:perform()
-    local clip = self.weapon:getWeaponPart("Clip")
     local scope = self.weapon:getWeaponPart("Scope")
-    local sling = self.weapon:getWeaponPart("Sling")
-    local canon = self.weapon:getWeaponPart("Canon")
-    local stock = self.weapon:getWeaponPart("Stock")
-    local pad = self.weapon:getWeaponPart("RecoilPad")
 
     if scope then
         if scope:getFullType() == "Base.x2Scope_Fake" then
@@ -71,6 +49,6 @@ function ISUpgradeWeapon:perform()
         end
     end
 
-    ISUpgradeWeapon_performHook(self)
     refreshSpriteNextTick(self.weapon)
+    ISUpgradeWeapon_performHook(self)
 end

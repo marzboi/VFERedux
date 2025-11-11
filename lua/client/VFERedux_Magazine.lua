@@ -1,15 +1,26 @@
 local function manageMagazineAttachment(weapon, shouldAttach)
 	if not weapon then return end
+	local coupledPart = weapon:getWeaponPart('Sling')
+	local coupled = coupledPart:getFullType() == 'Base.Coupled556' or
+		coupledPart:getFullType() == 'Base.Coupled556_Hidden'
 
 	if shouldAttach then
 		local Magazine = instanceItem("MagazineAttachment")
 		if Magazine then
 			weapon:attachWeaponPart(instanceItem("MagazineAttachment"), true)
+
+			if coupled then
+				weapon:attachWeaponPart(instanceItem("Base.Coupled556"), true)
+			end
 		end
 	else
 		local Magazine = weapon:getWeaponPart("Clip")
 		if Magazine then
 			weapon:detachWeaponPart(weapon:getWeaponPart("Clip"))
+
+			if coupled then
+				weapon:attachWeaponPart(instanceItem("Base.Coupled556_Hidden"), true)
+			end
 		end
 	end
 end

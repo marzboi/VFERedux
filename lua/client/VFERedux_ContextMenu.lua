@@ -179,7 +179,7 @@ function VFEContext:UpgradeSling(item, player, context)
         if weaponParts and not weaponParts:isEmpty() then
             for i = 0, weaponParts:size() - 1 do
                 local part = weaponParts:get(i);
-                if (part:getType() == "Sling") and not item:getSling() then
+                if (part:getType() == "Sling") and not item:getWeaponPart("Sling") then
                     -- To do: Localization
                     local listEntry = context:addOption(getText("IGUI_ContextMenu_AddSling"), item,
                         ISInventoryPaneContextMenu.onUpgradeWeapon, part, player);
@@ -203,7 +203,7 @@ function VFEContext:UpgradeSling2(item, player, context)
         if weaponParts and not weaponParts:isEmpty() then
             for i = 0, weaponParts:size() - 1 do
                 local part = weaponParts:get(i);
-                if (part:getType() == "Sling2") and not item:getSling() then
+                if (part:getType() == "Sling2") and not item:getWeaponPart("Sling") then
                     -- To do: Localization
                     local listEntry = context:addOption(getText("IGUI_ContextMenu_AddSling2"), item,
                         ISInventoryPaneContextMenu.onUpgradeWeapon, part, player);

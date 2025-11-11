@@ -103,7 +103,7 @@ module Base
         Icon             = GunSling,
         Weight           = 0.5,
         WeightModifier   = -1.0,
-        MountOn          = FakeItemSling,
+        MountOn          = AssaultRifle,
         PartType         = Sling,
         Tooltip          = Tooltip_Sling,
         WorldStaticModel = Sling_Ground,
@@ -116,7 +116,7 @@ module Base
         Icon             = GunSling2,
         Weight           = 0.5,
         WeightModifier   = -1.0,
-        MountOn          = FakeItemSling,
+        MountOn          = AssaultRifle,
         PartType         = Sling,
         Tooltip          = Tooltip_Sling,
         WorldStaticModel = Sling2_Ground,
@@ -353,5 +353,69 @@ module Base
         MetalValue       = 22,
         WorldStaticModel = 556Mag,
         Tooltip          = Tooltip_GunMagWeaponPart,
+    }
+    
+    item Coupled556
+    {
+        DisplayCategory    = WeaponPart,
+        Type               = WeaponPart,
+        DisplayName        = Coupled 5.56 Magazines,
+        Icon               = coupled556,
+        Weight             = 0.5,
+        WeightModifier     = 0.5,
+        ReloadTimeModifier = -10,
+        MountOn            = CAR15; AssaultRifle,
+        PartType           = Sling,
+        Tooltip            = Tooltip_AmmoStrap,
+        WorldStaticModel   = Coupled556_Ground,
+        Tags               = BulletReloadBoost,
+    }
+    
+    item Coupled556_Hidden
+    {
+        DisplayCategory    = WeaponPart,
+        Type               = WeaponPart,
+        DisplayName        = Coupled 5.56 Magazines,
+        Icon               = coupled556,
+        Weight             = 0.5,
+        WeightModifier     = 0.5,
+        ReloadTimeModifier = -10,
+        MountOn            = FakeItemSling,
+        PartType           = Sling,
+        Tooltip            = Tooltip_AmmoStrap,
+        WorldStaticModel   = Coupled556_Ground,
+        Tags               = BulletReloadBoost,
+    }
+    
+    item Coupled762
+    {
+        DisplayCategory    = WeaponPart,
+        Type               = WeaponPart,
+        DisplayName        = Coupled 7.62 Magazines,
+        Icon               = coupled762,
+        Weight             = 0.5,
+        WeightModifier     = 0.5,
+        ReloadTimeModifier = -10,
+        MountOn            = AK47; AK47Unfolded; MAK90,
+        PartType           = Sling,
+        Tooltip            = Tooltip_AmmoStrap,
+        WorldStaticModel   = Coupled762_Ground,
+        Tags               = BulletReloadBoost,
+    }
+    
+    item Coupled762_Hidden
+    {
+        DisplayCategory    = WeaponPart,
+        Type               = WeaponPart,
+        DisplayName        = Coupled 7.62 Magazines,
+        Icon               = coupled762,
+        Weight             = 0.5,
+        WeightModifier     = 0.5,
+        ReloadTimeModifier = -10,
+        MountOn            = FakeItemSling,
+        PartType           = Sling,
+        Tooltip            = Tooltip_AmmoStrap,
+        WorldStaticModel   = Coupled762_Ground,
+        Tags               = BulletReloadBoost,
     }
 }
