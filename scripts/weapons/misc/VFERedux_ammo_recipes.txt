@@ -63,4 +63,68 @@ module Base
             item 1 Base.22Box,
         }
     }
+    
+    craftRecipe Open Carton of 7.62 Ammo
+    {
+        timedAction = UnPackBox,
+        time        = 50,
+        category    = Packing,
+        Tags        = InHandCraft;CanBeDoneInDark,
+        inputs
+        {
+            item 1 [Base.762Carton] flags[AllowFavorite;InheritFavorite],,
+        }
+        outputs
+        {
+            item 12 Base.762Box,
+        }
+    }
+    
+    craftRecipe Pack Carton of 7.62 Ammo
+    {
+        timedAction = PackingBox,
+        time        = 50,
+        category    = Packing,
+        Tags        = InHandCraft;CanBeDoneInDark,
+        inputs
+        {
+            item 12 [Base.762Box] flags[AllowFavorite;InheritFavorite],,
+        }
+        outputs
+        {
+            item 1 Base.762Carton,
+        }
+    }
+    
+    craftRecipe Open Carton of .22 Ammo
+    {
+        timedAction = UnPackBox,
+        time        = 50,
+        category    = Packing,
+        Tags        = InHandCraft;CanBeDoneInDark,
+        inputs
+        {
+            item 1 [Base.22Carton] flags[AllowFavorite;InheritFavorite],,
+        }
+        outputs
+        {
+            item 12 Base.22Box,
+        }
+    }
+    
+    craftRecipe Pack Carton of .22 Ammo
+    {
+        timedAction = PackingBox,
+        time        = 50,
+        category    = Packing,
+        Tags        = InHandCraft;CanBeDoneInDark,
+        inputs
+        {
+            item 12 [Base.22Box] flags[AllowFavorite;InheritFavorite],,
+        }
+        outputs
+        {
+            item 1 Base.22Carton,
+        }
+    }
 }
