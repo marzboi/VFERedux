@@ -1,0 +1,3 @@
+version=1.2
+title=[42]VanillaFirearmsExpansion
+description=Unofficial Port of VFE and Addons.

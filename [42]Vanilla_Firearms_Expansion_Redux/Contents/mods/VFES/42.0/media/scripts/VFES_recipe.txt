@@ -1,0 +1,21 @@
+module Base
+{
+
+    recipe Open Box of 5.45 Ammo
+    {
+        545Box,
+
+        Result:545Bullets=8,
+        Sound:BoxOfRoundsOpenOne,
+        Time:15.0,
+    }
+
+    recipe Place 5.45 Ammo in Box
+    {
+        545Bullets=40,
+
+        Result:545Box,
+        Sound:BoxOfRoundsOpenOne,
+        Time:15.0,
+    }
+}

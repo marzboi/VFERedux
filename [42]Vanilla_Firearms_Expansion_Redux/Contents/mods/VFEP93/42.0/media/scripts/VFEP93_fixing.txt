@@ -1,0 +1,15 @@
+module Base
+{
+
+
+
+    fixing Fix M4A1
+    {
+       Require : M4A1,
+
+       Fixer : M4A1; Aiming=5,
+       Fixer : CleaningKit=1; Aiming=2,
+       Fixer : FireKlean; Aiming=1,
+    }
+
+}

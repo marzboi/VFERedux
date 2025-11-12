@@ -1,0 +1,37 @@
+   module Base
+{
+   
+	
+
+		model Magazine_P90
+	{
+		mesh = Weapons/ammo/Magazine_P90,
+		texture = Weapons/firearm/P90_texture,
+	}
+
+		model Magazine_MP7
+	{
+		mesh = Weapons/ammo/Magazine_MP7,
+		texture = Weapons/firearm/MP7_texture,
+	}
+
+
+		model Magazine_Vector
+	{
+		mesh = Weapons/ammo/Magazine_Vector,
+		texture = Weapons/firearm/Vector45_texture,
+	}
+
+		model Magazine_scar17
+	{
+		mesh = Weapons/ammo/Magazine_scar17,
+		texture = Weapons/firearm/scar17_texture,
+	}
+
+		model Magazine_AA12
+	{
+		mesh = Weapons/ammo/Magazine_AA12,
+		texture = Weapons/firearm/AA12_texture,
+	}
+}
+
