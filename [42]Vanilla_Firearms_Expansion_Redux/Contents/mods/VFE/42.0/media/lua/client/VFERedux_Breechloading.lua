@@ -76,3 +76,40 @@ function ISRackFirearm:animEvent(event, parameter)
         return ISRackFirearm_animEvent_old(self, event, parameter)
     end
 end
+
+local ISUnloadBulletsFromFirearm_animEvent_old = ISUnloadBulletsFromFirearm.animEvent
+function ISUnloadBulletsFromFirearm:animEvent(event, parameter)
+    if event == 'unloadFinished' then
+        VFESetWeaponModel(self.gun, false)
+        return ISUnloadBulletsFromFirearm_animEvent_old(self, event, parameter)
+    end
+    if event == 'changeWeaponSprite' then
+        if parameter and parameter ~= '' then
+            if parameter == 'open' then
+                VFESetWeaponModel(self.gun, true)
+            elseif parameter ~= 'original' then
+                self.gun:setWeaponSprite(parameter)
+            else
+                VFESetWeaponModel(self.gun, false)
+            end
+            self:setOverrideHandModels(self.gun, nil)
+            self.character:setPrimaryHandItem(self.gun);
+            if self.gun:isTwoHandWeapon() then
+                self.character:setSecondaryHandItem(self.gun);
+            end
+        end
+    else
+        return ISUnloadBulletsFromFirearm_animEvent_old(self, event, parameter)
+    end
+end
+
+local ISUnloadBulletsFromFirearm_stop_old = ISUnloadBulletsFromFirearm.stop
+function ISUnloadBulletsFromFirearm:stop()
+    VFESetWeaponModel(self.gun, false)
+    self:setOverrideHandModels(self.gun, nil)
+    self.character:setPrimaryHandItem(self.gun);
+    if self.gun:isTwoHandWeapon() then
+        self.character:setSecondaryHandItem(self.gun);
+    end
+    return ISUnloadBulletsFromFirearm_stop_old(self)
+end

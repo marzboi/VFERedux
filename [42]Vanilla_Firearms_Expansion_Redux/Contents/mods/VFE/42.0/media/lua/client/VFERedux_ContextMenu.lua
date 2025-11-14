@@ -180,7 +180,6 @@ function VFEContext:UpgradeSling(item, player, context)
             for i = 0, weaponParts:size() - 1 do
                 local part = weaponParts:get(i);
                 if (part:getType() == "Sling") and not item:getWeaponPart("Sling") then
-                    -- To do: Localization
                     local listEntry = context:addOption(getText("IGUI_ContextMenu_AddSling"), item,
                         ISInventoryPaneContextMenu.onUpgradeWeapon, part, player);
                     local tooltip = ISInventoryPaneContextMenu.addToolTip();

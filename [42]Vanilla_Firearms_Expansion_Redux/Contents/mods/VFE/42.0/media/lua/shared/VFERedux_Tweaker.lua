@@ -88,3 +88,43 @@ function VFETweaks:addToMountOn(attachment, addValues)
 
     return attachmentScript;
 end
+
+-- function VFETweaks:addToWeaponPart(weapon, addValues)
+--     local weaponScript = ScriptManager.instance:getItem(weapon);
+
+--     if weaponScript then
+--         local weaponItem = instanceItem(weapon);
+--         local mountOptions = weaponItem:getMountOn();
+--         local newList = {};
+
+--         for i, addValue in ipairs(type(addValues) ~= "table"
+--             and {
+--                 addValues
+--             }
+--             or addValues
+--         )
+--         do
+--             if not mountOptions:contains(addValue) and instanceItem(addValue)
+--             then
+--                 table.insert(newList, addValue);
+--             end
+--         end
+
+--         if #newList > 0
+--         then
+--             for i = 0, mountOptions:size() - 1
+--             do
+--                 local weapon = mountOptions:get(i);
+
+--                 if weapon and instanceItem(weapon)
+--                 then
+--                     table.insert(newList, weapon);
+--                 end
+--             end
+
+--             weaponScript:DoParam("MountOn = " .. table.concat(newList, "; "));
+--         end
+--     end
+
+--     return weaponScript;
+-- end

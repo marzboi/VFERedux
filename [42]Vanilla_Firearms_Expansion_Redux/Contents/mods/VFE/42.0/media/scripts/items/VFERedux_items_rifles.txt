@@ -1817,6 +1817,7 @@ module Base
         ModelWeaponPart              = Sling2 Sling2_M16 sling sling,
         ModelWeaponPart              = x2Scope x2Scope scope scope,
         ModelWeaponPart              = MagazineAttachment 556_Magazine magazine magazine,
+        ModelWeaponPart              = Silencer SilencerS silencer silencer,
         MultipleHitConditionAffected = false,
         MuzzleFlashModelKey          = muzzle_flash_assault_rifle,
         NPCSoundBoost                = 1.5,
