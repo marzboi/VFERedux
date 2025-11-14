@@ -802,7 +802,7 @@ module Base
         Type                         = Weapon,
         UnequipSound                 = SawnOffDoubleBarrelShotgunUnEquip,
         UseEndurance                 = false,
-        WeaponReloadType             = doublebarrelshotgunsawn2,
+        WeaponReloadType             = breechloader,
         WeaponSprite                 = ShotgunDoubleBarrelSawnNoStock,
         Weight                       = 2.5,
     }
