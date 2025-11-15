@@ -22,6 +22,8 @@ IGUI_EN = {
     IGUI_ContextMenu_AddSlingDescription = "Reduces encumbrance",
     IGUI_ContextMenu_AddSights = "Upgrade Sights",
     IGUI_ContextMenu_AddSightsDescription = "Improves aiming speed",
+    IGUI_ContextMenu_JungleMags = "Attach Jungle Style Magazines",
+    IGUI_ContextMenu_JungleMagsDescription = "Improves reload speed",
     
     IGUI_FirearmRadial_AltUseRifle = "Use Rifle",
     IGUI_FirearmRadial_AltUseShotgun = "Use Shotgun",
