@@ -76,9 +76,10 @@ module Base
         Type                         = Weapon,
         UnequipSound                 = DoubleBarrelShotgunUnEquip,
         UseEndurance                 = false,
-        WeaponReloadType             = breechloader,
+        WeaponReloadType             = doublebarrelshotgunv2,
         WeaponSprite                 = M2400_Shotgun,
         Weight                       = 4,
+        needtobeclosedoncereload     = true,
     }
     
     item M2400_Rifle
@@ -160,8 +161,9 @@ module Base
         Type                         = Weapon,
         UnequipSound                 = DoubleBarrelShotgunUnEquip,
         UseEndurance                 = false,
-        WeaponReloadType             = breechloader,
+        WeaponReloadType             = doublebarrelshotgunv2,
         WeaponSprite                 = M2400_Rifle,
         Weight                       = 4,
+        needtobeclosedoncereload     = true,
     }
 }

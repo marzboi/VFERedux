@@ -643,9 +643,10 @@ module Base
         Type                         = Weapon,
         UnequipSound                 = DoubleBarrelShotgunUnEquip,
         UseEndurance                 = false,
-        WeaponReloadType             = breechloader,
+        WeaponReloadType             = doublebarrelshotgun,
         WeaponSprite                 = DoubleBarrelShotgun,
         Weight                       = 4,
+        needtobeclosedoncereload     = true,
     }
     
     item DoubleBarrelShotgunSawnoff
@@ -723,9 +724,10 @@ module Base
         Type                         = Weapon,
         UnequipSound                 = SawnOffDoubleBarrelShotgunUnEquip,
         UseEndurance                 = false,
-        WeaponReloadType             = breechloader,
+        WeaponReloadType             = doublebarrelshotgun,
         WeaponSprite                 = ShotgunDoubleBarrelSawn,
         Weight                       = 3.0,
+        needtobeclosedoncereload     = true,
     }
     
     item DoubleBarrelShotgunSawnoffNoStock
@@ -802,9 +804,10 @@ module Base
         Type                         = Weapon,
         UnequipSound                 = SawnOffDoubleBarrelShotgunUnEquip,
         UseEndurance                 = false,
-        WeaponReloadType             = breechloader,
+        WeaponReloadType             = doublebarrelshotgun,
         WeaponSprite                 = ShotgunDoubleBarrelSawnNoStock,
         Weight                       = 2.5,
+        needtobeclosedoncereload     = true,
     }
     
     item Spas12

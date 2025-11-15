@@ -104,50 +104,50 @@ function VFEContext:Stock(item, index, indexMod, player, context, enabled)
     listEntry.toolTip = tooltip;
 end
 
-function VFEContext:Upgrade(item, index, player, context)
-    local hasScrewdriver = player:getInventory():containsTagEvalRecurse("Screwdriver", predicateNotBroken)
-    if item and instanceof(item, "HandWeapon") and hasScrewdriver then
-        -- add parts
-        local weaponParts = player:getInventory():getItemsFromCategory("WeaponPart");
-        if weaponParts and not weaponParts:isEmpty() then
-            local subMenuUp = context:getNew(context);
-            local doIt = false;
-            local addOption = false;
-            local alreadyDoneList = {};
-            for i = 0, weaponParts:size() - 1 do
-                local part = weaponParts:get(i);
-                if part:getMountOn():contains(VFEAttachmentParity[index + 1]) and not alreadyDoneList[part:getName()] then
-                    if (part:getPartType() == "Scope") and not item:getWeaponPart("Scope") then
-                        addOption = true;
-                    elseif (part:getPartType() == "Clip") and not item:getWeaponPart("Clip") then
-                        addOption = true;
-                    elseif (part:getPartType() == "Sling") and not item:getWeaponPart("Sling") then
-                        addOption = true;
-                    elseif (part:getPartType() == "Stock") and not item:getWeaponPart("Stock") then
-                        addOption = true;
-                    elseif (part:getPartType() == "Canon") and not item:getWeaponPart("Canon") then
-                        addOption = true;
-                    elseif (part:getPartType() == "RecoilPad") and not item:getWeaponPart("RecoilPad") then
-                        addOption = true;
-                    elseif (part:getPartType() == "JungleMag") and not item:getWeaponPart("JungleMag") then
-                        addOption = true;
-                    end
-                end
-                if addOption then
-                    doIt = true;
-                    subMenuUp:addOption(weaponParts:get(i):getName(), item, ISInventoryPaneContextMenu.onUpgradeWeapon,
-                        part, player);
-                    addOption = false;
-                    alreadyDoneList[part:getName()] = true;
-                end
-            end
-            if doIt then
-                local upgradeOption = context:addOption(getText("ContextMenu_Add_Weapon_Upgrade"), items, nil);
-                context:addSubMenu(upgradeOption, subMenuUp);
-            end
-        end
-    end
-end
+-- function VFEContext:Upgrade(item, index, player, context)
+--     local hasScrewdriver = player:getInventory():containsTagEvalRecurse("Screwdriver", predicateNotBroken)
+--     if item and instanceof(item, "HandWeapon") and hasScrewdriver then
+--         -- add parts
+--         local weaponParts = player:getInventory():getItemsFromCategory("WeaponPart");
+--         if weaponParts and not weaponParts:isEmpty() then
+--             local subMenuUp = context:getNew(context);
+--             local doIt = false;
+--             local addOption = false;
+--             local alreadyDoneList = {};
+--             for i = 0, weaponParts:size() - 1 do
+--                 local part = weaponParts:get(i);
+--                 if part:getMountOn():contains(VFEAttachmentParity[index + 1]) and not alreadyDoneList[part:getName()] then
+--                     if (part:getPartType() == "Scope") and not item:getWeaponPart("Scope") then
+--                         addOption = true;
+--                     elseif (part:getPartType() == "Clip") and not item:getWeaponPart("Clip") then
+--                         addOption = true;
+--                     elseif (part:getPartType() == "Sling") and not item:getWeaponPart("Sling") then
+--                         addOption = true;
+--                     elseif (part:getPartType() == "Stock") and not item:getWeaponPart("Stock") then
+--                         addOption = true;
+--                     elseif (part:getPartType() == "Canon") and not item:getWeaponPart("Canon") then
+--                         addOption = true;
+--                     elseif (part:getPartType() == "RecoilPad") and not item:getWeaponPart("RecoilPad") then
+--                         addOption = true;
+--                     elseif (part:getPartType() == "JungleMag") and not item:getWeaponPart("JungleMag") then
+--                         addOption = true;
+--                     end
+--                 end
+--                 if addOption then
+--                     doIt = true;
+--                     subMenuUp:addOption(weaponParts:get(i):getName(), item, ISInventoryPaneContextMenu.onUpgradeWeapon,
+--                         part, player);
+--                     addOption = false;
+--                     alreadyDoneList[part:getName()] = true;
+--                 end
+--             end
+--             if doIt then
+--                 local upgradeOption = context:addOption(getText("ContextMenu_Add_Weapon_Upgrade"), items, nil);
+--                 context:addSubMenu(upgradeOption, subMenuUp);
+--             end
+--         end
+--     end
+-- end
 
 function VFEContext:UpgradeIrons(item, player, context)
     local hasScrewdriver = player:getInventory():containsTagEvalRecurse("Screwdriver", predicateNotBroken)

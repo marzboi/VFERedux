@@ -138,7 +138,10 @@ function VFEFoldingStock(item, newWeapIndex, player)
 		local sling = item:getWeaponPart("Sling")
 		local canon = item:getWeaponPart("Canon")
 		local stock = item:getWeaponPart("Stock")
+		local JungleMag = item:getWeaponPart("jungleMag")
 		local pad = item:getWeaponPart("RecoilPad")
+		local Bipod = item:getWeaponPart("Bipod")
+
 		if scope then
 			result:attachWeaponPart(scope)
 		end
@@ -156,6 +159,12 @@ function VFEFoldingStock(item, newWeapIndex, player)
 		end
 		if clip then
 			result:attachWeaponPart(clip)
+		end
+		if JungleMag then
+			result:attachWeaponPart(JungleMag)
+		end
+		if Bipod then
+			result:attachWeaponPart(Bipod)
 		end
 
 		if hotBar:isInHotbar(item) then -- hotbar

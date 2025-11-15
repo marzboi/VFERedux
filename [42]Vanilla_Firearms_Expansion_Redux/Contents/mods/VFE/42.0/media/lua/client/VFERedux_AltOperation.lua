@@ -234,6 +234,7 @@ function VFEAltOperation(item, altOperation, target, player)
 	local stock = item:getWeaponPart("Stock")
 	local pad = item:getWeaponPart("RecoilPad")
 	local JungleMag = item:getWeaponPart("jungleMag")
+	local Bipod = item:getWeaponPart("Bipod")
 	if scope then
 		result:attachWeaponPart(scope)
 	end
@@ -254,6 +255,9 @@ function VFEAltOperation(item, altOperation, target, player)
 	end
 	if JungleMag then
 		result:attachWeaponPart(JungleMag)
+	end
+	if Bipod then
+		result:attachWeaponPart(Bipod)
 	end
 
 	if hotBar:isInHotbar(item) then -- hotbar

@@ -149,7 +149,7 @@ module Base
         AimingTimeModifier  = -5,
         RecoilDelayModifier = -2.0,
         MountOn             = HuntingRifle; VarmintRifle; SniperRifle; AssaultRifle2; SKS,
-        PartType            = Canon,
+        PartType            = Bipod,
         Tooltip             = Tooltip_Laser,
         MetalValue          = 15,
         WorldStaticModel    = Bipod_Ground,

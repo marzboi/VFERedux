@@ -187,6 +187,8 @@ function VFEBayonet(item, index, player, bayonet)
 		local stock = item:getWeaponPart("Stock")
 		local pad = item:getWeaponPart("RecoilPad")
 		local JungleMag = item:getWeaponPart("JungleMag")
+		local Bipod = item:getWeaponPart("Bipod")
+
 		if scope then
 			if scope:getFullType() == "Base.x2Scope" then
 				scope = instanceItem("Base.x2Scope_Fake")
@@ -217,6 +219,9 @@ function VFEBayonet(item, index, player, bayonet)
 		end
 		if JungleMag then
 			result:attachWeaponPart(JungleMag)
+		end
+		if Bipod then
+			result:attachWeaponPart(Bipod)
 		end
 
 		-- Load Bayonet Data
@@ -303,6 +308,7 @@ function VFEBayonet(item, index, player, bayonet)
 		local stock = item:getWeaponPart("Stock")
 		local pad = item:getWeaponPart("RecoilPad")
 		local JungleMag = item:getWeaponPart("JungleMag")
+		local Bipod = item:getWeaponPart("Bipod")
 		if scope then
 			if scope:getFullType() == "Base.x2Scope_Fake" then
 				scope = instanceItem("Base.x2Scope")
@@ -333,6 +339,9 @@ function VFEBayonet(item, index, player, bayonet)
 		end
 		if JungleMag then
 			result:attachWeaponPart(JungleMag)
+		end
+		if Bipod then
+			result:attachWeaponPart(Bipod)
 		end
 
 		-- Load Rifle Data
