@@ -97,7 +97,7 @@ module Base
         WorldStaticModel = Spent_Shotgun_Round,
     }
     
-// VFE models
+// VFE Ammo
     
     item 22Bullets_Casing
     {
@@ -108,8 +108,8 @@ module Base
         DisplayCategory  = Casings,
         Icon             = 22_Casing,
         MetalValue       = 1,
-        StaticModel      = Spent_PistolLongSmall,
-        WorldStaticModel = Spent_PistolLongSmall,
+        StaticModel      = Spent_9mm_Round,
+        WorldStaticModel = Spent_9mm_Round,
     }
     item 762Bullets_Casing
     {
@@ -120,8 +120,8 @@ module Base
         DisplayCategory  = Casings,
         Icon             = 762_Casing,
         MetalValue       = 1,
-        StaticModel      = Spent_VFE_762,
-        WorldStaticModel = Spent_VFE_762,
+        StaticModel      = Spent_9mm_Round,
+        WorldStaticModel = Spent_9mm_Round,
     }
     item 545Bullets_Casing
     {
@@ -132,7 +132,7 @@ module Base
         DisplayCategory  = Casings,
         Icon             = 545_Casing,
         MetalValue       = 1,
-        StaticModel      = Spent_VFE_545,
-        WorldStaticModel = Spent_VFE_545,
+        StaticModel      = Spent_9mm_Round,
+        WorldStaticModel = Spent_9mm_Round,
     }
 }

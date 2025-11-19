@@ -47,12 +47,31 @@ function SpentCasingPhysics.update()
             casing.y = casing.y + (casing.velocityY * XY_STEP)
             casing.z = casing.z + (casing.velocityZ * Z_STEP)
 
-            casing.x = PZMath.clamp_01(casing.x)
-            casing.y = PZMath.clamp_01(casing.y)
             casing.z = math.max(0, casing.z)
 
+            local worldX = casing.square:getX() + casing.x
+            local worldY = casing.square:getY() + casing.y
+            local worldZ = casing.square:getZ()
+
+            local targetTileX = math.floor(worldX)
+            local targetTileY = math.floor(worldY)
+            local targetSquare = getCell():getGridSquare(targetTileX, targetTileY, worldZ)
+
+            if not targetSquare then
+                targetSquare = casing.square
+            end
+
+            local localX = worldX - targetSquare:getX()
+            local localY = worldY - targetSquare:getY()
+
+            localX = PZMath.clamp_01(localX)
+            localY = PZMath.clamp_01(localY)
+
             if casing.currentWorldItem then
-                casing.square:removeWorldObject(casing.currentWorldItem:getWorldItem())
+                local wobj = casing.currentWorldItem:getWorldItem()
+                if wobj then
+                    casing.square:removeWorldObject(wobj)
+                end
                 casing.currentWorldItem = nil
             end
 
@@ -61,17 +80,17 @@ function SpentCasingPhysics.update()
             casing.velocityZ = casing.velocityZ * DRAG_Z
 
             if casing.z > 0 then
-                casing.currentWorldItem = casing.square:AddWorldInventoryItem(
+                casing.currentWorldItem = targetSquare:AddWorldInventoryItem(
                     casing.casingType,
-                    casing.x,
-                    casing.y,
+                    localX,
+                    localY,
                     casing.z
                 )
             else
-                casing.square:AddWorldInventoryItem(
+                targetSquare:AddWorldInventoryItem(
                     casing.casingType,
-                    casing.x,
-                    casing.y,
+                    localX,
+                    localY,
                     0.0
                 )
 
@@ -88,6 +107,13 @@ function SpentCasingPhysics.update()
                     i = i - 1
                 end
             end
+
+            if targetSquare ~= casing.square then
+                casing.square = targetSquare
+            end
+
+            casing.x = localX
+            casing.y = localY
 
             i = i + 1
         end
@@ -135,7 +161,7 @@ local function doSpawnCasing(playerObj, weapon, opts)
 
     local velX = (random_f:random(10) - 5) / 200
     local velY = (random_f:random(10) - 5) / 200
-    local velZ = (random_f:random(10) + 15) / 200
+    local velZ = (random_f:random(10) + 25) / 200
 
     SpentCasingPhysics.addCasing(targetSquare, casingType, startX, startY, startZ, velX, velY, velZ)
 end
