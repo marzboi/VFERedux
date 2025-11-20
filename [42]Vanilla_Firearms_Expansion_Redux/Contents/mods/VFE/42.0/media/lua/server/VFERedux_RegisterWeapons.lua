@@ -1,0 +1,10 @@
+SpentCasingPhysics.registerWeapon(
+    "Base.AssaultRifle",
+    "Base.556Bullets_Casing",
+    "Base.556Bullets",
+    0.35,
+    0.10,
+    0.45,
+    0.15,
+    false
+)

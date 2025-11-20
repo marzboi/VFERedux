@@ -1,6 +1,5 @@
 require "ISBaseObject"
 
-SpentCasingPhysics = {}
 SpentCasingPhysics.activeCasings = {}
 SpentCasingPhysics.GRAVITY = 0.005
 local random_f = newrandom()
@@ -120,29 +119,17 @@ function SpentCasingPhysics.update()
     end
 end
 
--- leaving this here until I figure a way to use attachment position to spawn the casingType/Bullet
--- local function checkModel(weapon)
---     if not weapon then return end
---     local weaponModel = ScriptManager.instance:getModelScript(weapon:getOriginalWeaponSprite())
---     for i = 0, weaponModel:getAttachmentCount() - 1 do
---         local partList = weaponModel:getAttachment(i)
---         if partList:getId() == "ejectionport" then
---             local partOffset = partList:getOffset()
---             print(partOffset:get(0))
---             print(partOffset:get(1))
---             print(partOffset:get(2))
---         end
---     end
--- end
-
-local function doSpawnCasing(player, params)
+function SpentCasingPhysics.doSpawnCasing(player, params, racking)
     local forwardOffset = params.forwardOffset or 0.0
     local sideOffset = params.sideOffset or 0.0
     local heightOffset = params.heightOffset or 0.5
     local shellForce = params.shellForce or 0.0
-    local casingType = params.spentCasing
+    local ammoToEject = params.casing
+    if racking then
+        ammoToEject = params.ammo
+    end
 
-    if not casingType then return end
+    if not ammoToEject then return end
 
     local px, py, pz = player:getX(), player:getY(), player:getZ()
 
@@ -176,23 +163,35 @@ local function doSpawnCasing(player, params)
     velX = velX + rx * shellForce
     velY = velY + ry * shellForce
 
-    SpentCasingPhysics.addCasing(targetSquare, casingType, startX, startY, startZ, velX, velY, velZ)
+    SpentCasingPhysics.addCasing(targetSquare, ammoToEject, startX, startY, startZ, velX, velY, velZ)
 end
 
-
-local function spawnCasing(player, weapon)
+function SpentCasingPhysics.spawnCasing(player, weapon)
     if not player or player:isDead() then return end
     if not weapon then return end
 
-    local params = WeaponEjectionPortList[weapon:getFullType()]
+    local params = SpentCasingPhysics.WeaponEjectionPortParams[weapon:getFullType()]
     if not params then return end
 
     if params.manualEjection then return end
 
     if weapon:getCurrentAmmoCount() > 0 then
-        doSpawnCasing(player, params)
+        SpentCasingPhysics.doSpawnCasing(player, params)
     end
 end
 
-Events.OnWeaponSwing.Add(spawnCasing)
+function SpentCasingPhysics.rackCasing(player, weapon, racking)
+    if not player or player:isDead() then return end
+    if not weapon then return end
+    if not racking then return end
+
+    local params = SpentCasingPhysics.WeaponEjectionPortParams[weapon:getFullType()]
+    if not params then return end
+
+    if weapon:getCurrentAmmoCount() > 0 then
+        SpentCasingPhysics.doSpawnCasing(player, params, racking)
+    end
+end
+
+Events.OnWeaponSwing.Add(SpentCasingPhysics.spawnCasing)
 Events.OnTick.Add(SpentCasingPhysics.update)
