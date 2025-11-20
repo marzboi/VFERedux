@@ -1,8 +1,9 @@
 require "ISBaseObject"
 
-local SpentCasingPhysics = {}
+SpentCasingPhysics = {}
 SpentCasingPhysics.activeCasings = {}
 SpentCasingPhysics.GRAVITY = 0.005
+local random_f = newrandom()
 
 function SpentCasingPhysics.addCasing(square, casingType, startX, startY, startZ, velocityX, velocityY, velocityZ)
     if not square then return end
@@ -120,22 +121,30 @@ function SpentCasingPhysics.update()
     end
 end
 
-local function doSpawnCasing(playerObj, weapon, opts)
-    if not playerObj or playerObj:isDead() then return end
-    if not weapon or not weapon:isRanged() then return end
+-- local function checkModel(weapon)
+--     if not weapon then return end
+--     local weaponModel = ScriptManager.instance:getModelScript(weapon:getOriginalWeaponSprite())
+--     if weapon then print(weaponModel) end
 
-    opts = opts or {}
-    local forwardOffset = opts.forwardOffset or 0.28
-    local sideOffset = opts.sideOffset or 0.25
-    local random_f = newrandom()
+--     for i = 0, weaponModel:getAttachmentCount() - 1 do
+--         local partList = weaponModel:getAttachment(i)
+--         if partList:getId() == "ejectionport" then
+--             print(partList:getOffset())
+--             print(partList:getRotate())
+--         end
+--     end
+-- end
 
-    local gunAmmo, replaced = string.gsub(weapon:getAmmoType() or "", "Base.", "")
-    if gunAmmo == "" then return end
-    local casingType = "Base." .. gunAmmo .. "_Casing"
+local function doSpawnCasing(player, weapon, params)
+    local forwardOffset = params.forwardOffset or 0.0
+    local sideOffset = params.sideOffset or 0.0
+    local casingType = params.spentCasing
 
-    local px, py, pz = playerObj:getX(), playerObj:getY(), playerObj:getZ()
+    if not casingType then return end
 
-    local angleDeg = playerObj:getDirectionAngle() or 0
+    local px, py, pz = player:getX(), player:getY(), player:getZ()
+
+    local angleDeg = player:getDirectionAngle() or 0
     local angle = math.rad(angleDeg)
 
     local fx = math.cos(angle)
@@ -151,7 +160,7 @@ local function doSpawnCasing(playerObj, weapon, opts)
     local targetTileY = math.floor(spawnWorldY)
     local targetSquare = getCell():getGridSquare(targetTileX, targetTileY, pz)
     if not targetSquare then
-        targetSquare = playerObj:getCurrentSquare()
+        targetSquare = player:getCurrentSquare()
         if not targetSquare then return end
     end
 
@@ -166,32 +175,27 @@ local function doSpawnCasing(playerObj, weapon, opts)
     SpentCasingPhysics.addCasing(targetSquare, casingType, startX, startY, startZ, velX, velY, velZ)
 end
 
-local function SpawnCasing(playerObj, weapon)
-    if not playerObj or playerObj:isDead() then return end
+local function spawnCasing(player, weapon, params)
+    if not player or player:isDead() then return end
     if not weapon then return end
-    if not weapon:isRanged() then return end
+    if not params then return end
 
-    if weapon:getWeaponReloadType() == "revolver" or weapon:getWeaponReloadType() == "doublebarrelshotgun" or weapon:getWeaponReloadType() == "doublebarrelshotgunsawn" then return end
-
-    if weapon and weapon:isRanged() and weapon:getCurrentAmmoCount() > 0 and not weapon:isRackAfterShoot() then
-        doSpawnCasing(playerObj, weapon)
+    if weapon:getCurrentAmmoCount() > 0 then
+        doSpawnCasing(player, weapon, params)
     end
 end
 
-local ISRackFirearm_perform_old = ISRackFirearm.perform
-function ISRackFirearm:perform()
-    local player = self.character
-    local weapon = self.gun
+-- local ISRackFirearm_perform_old = ISRackFirearm.perform
+-- function ISRackFirearm:perform()
+--     local player = self.character
+--     local weapon = self.gun
+--     ISRackFirearm_perform_old(self)
+-- end
 
-    if player and weapon then
-        local rackingOpts = {
-            forwardOffset = 0.30,
-            sideOffset = 0.10,
-        }
-        doSpawnCasing(player, weapon, rackingOpts)
+Events.OnWeaponSwing.Add(function(player, weapon)
+    local params = WeaponEjectionPortList[weapon:getFullType()]
+    if params then
+        spawnCasing(player, weapon, params)
     end
-    ISRackFirearm_perform_old(self)
-end
-
-Events.OnWeaponSwing.Add(SpawnCasing)
+end)
 Events.OnTick.Add(SpentCasingPhysics.update)

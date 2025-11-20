@@ -1441,6 +1441,7 @@ module Base
         ModelWeaponPart              = Sling2 Sling2_CAR15 sling sling,
         ModelWeaponPart              = x2Scope x2Scope scope scope,
         ModelWeaponPart              = MagazineAttachment 556_Magazine magazine magazine,
+        ModelWeaponPart              = EjectionPort EjectionPort ejectionport ejectionport,
         MultipleHitConditionAffected = false,
         MuzzleFlashModelKey          = muzzle_flash_assault_rifle,
         NPCSoundBoost                = 1.5,
