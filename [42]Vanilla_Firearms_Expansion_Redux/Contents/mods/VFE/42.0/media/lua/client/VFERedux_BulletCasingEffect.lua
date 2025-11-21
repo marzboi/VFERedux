@@ -1,8 +1,8 @@
 require "ISBaseObject"
 
 SpentCasingPhysics.activeCasings = {}
-SpentCasingPhysics.GRAVITY = 0.005
-local random_f = newrandom()
+local RANDOM = newrandom()
+local GRAVITY = 0.005
 local XY_STEP = 0.10           -- multiply X/Y velocity by this when adding to position (small step)
 local Z_STEP = 0.05            -- multiply Z velocity by this when adding to position (small step)
 local GRAVITY_SCALE = 1.0      -- scale for the global gravity (keeps existing constant but allows easy tweak)
@@ -40,7 +40,7 @@ function SpentCasingPhysics.update()
         if not casing.square or not casing.active then
             table.remove(SpentCasingPhysics.activeCasings, i)
         else
-            casing.velocityZ = casing.velocityZ - (SpentCasingPhysics.GRAVITY * GRAVITY_SCALE)
+            casing.velocityZ = casing.velocityZ - (GRAVITY * GRAVITY_SCALE)
 
             casing.x = casing.x + (casing.velocityX * XY_STEP)
             casing.y = casing.y + (casing.velocityY * XY_STEP)
@@ -175,9 +175,9 @@ function SpentCasingPhysics.doSpawnCasing(player, params, racking)
     local stairFrac = pz - targetSquare:getZ()
     local startZ = stairFrac + heightOffset
 
-    local velX = (random_f:random(10) - 5) / 200
-    local velY = (random_f:random(10) - 5) / 200
-    local velZ = (random_f:random(10) + 25) / 200
+    local velX = (RANDOM:random(10) - 5) / 200
+    local velY = (RANDOM:random(10) - 5) / 200
+    local velZ = (RANDOM:random(10) + 25) / 200
 
     velX = velX + rx * shellForce
     velY = velY + ry * shellForce
