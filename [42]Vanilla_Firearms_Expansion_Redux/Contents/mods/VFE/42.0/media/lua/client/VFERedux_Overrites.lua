@@ -1,59 +1,49 @@
-ISReloadWeaponAction.onShoot = function(player, weapon)
-    if not weapon:isRanged() then return; end
+------- Racking ---------------
+function ISRackFirearm:removeBullet()
+    print("Remove Bullet in Rack")
+    SpentCasingPhysics.rackCasing(self.character, self.gun, true)
+end
 
-    -- for the dedicated server
-    if MoodlesUI.getInstance() then
-        MoodlesUI.getInstance():wiggle(MoodleType.Panic);
-        MoodlesUI.getInstance():wiggle(MoodleType.Stress);
-        MoodlesUI.getInstance():wiggle(MoodleType.Drunk);
-        MoodlesUI.getInstance():wiggle(MoodleType.Tired);
-        MoodlesUI.getInstance():wiggle(MoodleType.Endurance);
-        local body = player:getBodyDamage():getBodyParts()
-        for x = BodyPartType.ToIndex(BodyPartType.Hand_L), BodyPartType.ToIndex(BodyPartType.UpperArm_R), 1 do
-            if body:get(x):getPain() then
-                MoodlesUI.getInstance():wiggle(MoodleType.Pain);
-                break
-            end
+function ISRackFirearm:ejectSpentRounds()
+    if self.gun:getSpentRoundCount() > 0 then
+        for i = 1, self.gun:getSpentRoundCount() do
+            print("SpentRound loop in rack")
+            SpentCasingPhysics.rackCasing(self.character, self.gun, false)
         end
+        self.gun:setSpentRoundCount(0)
+        syncHandWeaponFields(self.character, self.gun)
+    elseif self.gun:isSpentRoundChambered() then
+        print("Second if rack")
+        self.gun:setSpentRoundChambered(false)
+        SpentCasingPhysics.rackCasing(self.character, self.gun, false)
+        syncHandWeaponFields(self.character, self.gun)
+    else
+        return
     end
+    -- if self.gun:getShellFallSound() then
+    --     self.character:getEmitter():playSound(self.gun:getShellFallSound())
+    -- end
+end
 
-    if getDebug() and player:isUnlimitedAmmo() then
-        return;
-    end
+------- Reloading -------------
 
-    if weapon:haveChamber() then
-        weapon:setRoundChambered(false);
-        weapon:setSpentRoundChambered(true)
-    end
-    -- shotgun need to be rack after each shot to rechamber round
-    -- See ISReloadWeaponAction.OnPlayerAttackFinished()
-    -- Jam check is handled by rack action
-    if not weapon:isRackAfterShoot() then
-        -- automatic weapons eject the bullet cartridge
-        if not weapon:isManuallyRemoveSpentRounds() then
-            -- TODO: check for extraction jam
-            weapon:setSpentRoundChambered(false)
-            -- if weapon:getShellFallSound() then
-            -- 	player:getEmitter():playSound(weapon:getShellFallSound()) -- letting the sound play at the casing falling
-            -- end
+function ISReloadWeaponAction:ejectSpentRounds()
+    if self.gun:getSpentRoundCount() > 0 then
+        for i = 1, self.gun:getSpentRoundCount() do
+            print("SpentRound loop in reload")
+            SpentCasingPhysics.rackCasing(self.character, self.gun, false)
         end
-        if weapon:getCurrentAmmoCount() >= weapon:getAmmoPerShoot() then
-            -- remove ammo, add one to chamber if we still have some
-            if weapon:haveChamber() then
-                weapon:setRoundChambered(true);
-            end
-            if not isClient() then
-                weapon:setCurrentAmmoCount(weapon:getCurrentAmmoCount() - weapon:getAmmoPerShoot())
-            end
-            -- check if we jam feeding the round into the chamber
-            if (weapon:getJamGunChance() > 0) then
-                weapon:checkJam(player, false)
-            end
-        end
+        self.gun:setSpentRoundCount(0)
+        syncHandWeaponFields(self.character, self.gun)
+    elseif self.gun:isSpentRoundChambered() then
+        print("Second if reload")
+        self.gun:setSpentRoundChambered(false)
+        SpentCasingPhysics.rackCasing(self.character, self.gun, false)
+        syncHandWeaponFields(self.character, self.gun)
+    else
+        return
     end
-    if weapon:isManuallyRemoveSpentRounds() then
-        weapon:setSpentRoundCount(weapon:getSpentRoundCount() + weapon:getAmmoPerShoot())
-    end
-
-    syncHandWeaponFields(player, weapon)
+    -- if self.gun:getShellFallSound() then
+    -- 	self.character:getEmitter():playSound(self.gun:getShellFallSound())
+    -- end
 end

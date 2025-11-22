@@ -129,9 +129,9 @@ function SpentCasingPhysics.update()
                     0.0
                 )
 
-                if casing.weapon:getShellFallSound() then
-                    casing.player:getEmitter():playSound(casing.weapon:getShellFallSound())
-                end
+                -- if casing.weapon:getShellFallSound() then
+                --     casing.player:getEmitter():playSound(casing.weapon:getShellFallSound()) -- this will be here until I figure how to stop vanilla from playing the shellsound everytime you shoot
+                -- end
 
                 if math.abs(casing.velocityX) < SETTLE_THRESHOLD
                     and math.abs(casing.velocityY) < SETTLE_THRESHOLD
@@ -218,13 +218,16 @@ end
 function SpentCasingPhysics.rackCasing(player, weapon, racking)
     if not player or player:isDead() then return end
     if not weapon then return end
-    if not racking then return end
 
     local params = SpentCasingPhysics.WeaponEjectionPortParams[weapon:getFullType()]
     if not params then return end
 
-    if weapon:getCurrentAmmoCount() > 0 then
+    if racking then
         SpentCasingPhysics.doSpawnCasing(player, weapon, params, racking)
+    end
+
+    if not racking then
+        SpentCasingPhysics.doSpawnCasing(player, weapon, params)
     end
 end
 
