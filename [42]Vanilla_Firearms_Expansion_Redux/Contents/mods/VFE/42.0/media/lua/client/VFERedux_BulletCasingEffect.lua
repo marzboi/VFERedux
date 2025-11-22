@@ -130,7 +130,7 @@ function SpentCasingPhysics.update()
                 )
 
                 -- if casing.weapon:getShellFallSound() then
-                --     casing.player:getEmitter():playSound(casing.weapon:getShellFallSound()) -- this will be here until I figure how to stop vanilla from playing the shellsound everytime you shoot
+                --     casing.player:getEmitter():playSound(casing.weapon:getShellFallSound()) -- this will commented out until I figure how to stop vanilla from playing the shellsound everytime you shoot
                 -- end
 
                 if math.abs(casing.velocityX) < SETTLE_THRESHOLD
