@@ -1,0 +1,3 @@
+version=1.0
+title=[42]Hot Brass - Visible Casing Ejection Framework
+description=You will see visible casing this time

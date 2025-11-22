@@ -1,0 +1,12 @@
+-- Register a Singe weapon example
+
+-- SpentCasingPhysics.registerWeapon(
+--     "Base.AssaultRifle",
+--     "Base.556Bullets_Casing",
+--     "Base.556Bullets",
+--     0.35,
+--     0.10,
+--     0.45,
+--     1.00,
+--     false
+-- )
