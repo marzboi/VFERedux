@@ -22,3 +22,7 @@ doParam("Base.Bullets38", "icon", "38Bullets")
 doParam("Base.308Bullets", "icon", "308Bullets")
 doParam("Base.556Bullets", "icon", "556Bullets")
 doParam("Base.223Bullets", "icon", "223Bullets")
+
+-- --Shotgun Modifiers
+doParam("Base.DoubleBarrelShotgun", "ManuallyRemoveSpentRounds", "true")
+doParam("Base.DoubleBarrelShotgunSawnoff", "ManuallyRemoveSpentRounds", "true")

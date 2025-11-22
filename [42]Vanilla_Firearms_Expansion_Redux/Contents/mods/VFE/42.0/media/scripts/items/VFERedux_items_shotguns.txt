@@ -597,6 +597,7 @@ module Base
         InsertAmmoStopSound          = DoubleBarrelShotgunInsertAmmoStop,
         IsAimedFirearm               = true,
         IsAimedHandWeapon            = true,
+        FireMode                     = Single,
         JamGunChance                 = 0,
         KnockBackOnNoDeath           = true,
         KnockdownMod                 = 8,
